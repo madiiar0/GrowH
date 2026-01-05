@@ -3,7 +3,7 @@ Notification module - Discord & Telegram alerts
 """
 import requests
 import json
-from datetime import datetime
+from datetime import datetime, timezone
 
 def send_discord_alert(webhook_url, title, message, posts=None, color=0x5865F2):
     """
@@ -24,7 +24,7 @@ def send_discord_alert(webhook_url, title, message, posts=None, color=0x5865F2):
         "title": f"🤖 {title}",
         "description": message,
         "color": color,
-        "timestamp": datetime.utcnow().isoformat(),
+        "timestamp": datetime.now(timezone.utc).isoformat(),
         "footer": {"text": "Reddit Scraper Alert"}
     }]
     
